@@ -1,3 +1,5 @@
+const {StatusCodes} = require('http-status-codes');
+
 function pingProblemController (req, res) {
     res.json({message:'Ping controller in working'})
 }
