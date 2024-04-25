@@ -4,6 +4,7 @@
   "description": "this is admin service to manage problem of coding platform like leetcode",
   "main": "index.js",
   "scripts": {
+    "dev":"npx nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
