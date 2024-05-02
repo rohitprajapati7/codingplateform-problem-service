@@ -5,7 +5,7 @@ function pingProblemController (req, res) {
     res.json({message:'Ping controller in working'})
 }
 
-function addProblem (req, res) {
+function addProblem (req, res, next) {
     try {
         throw new NotImplemented('addProblem');
     } catch (error) {
