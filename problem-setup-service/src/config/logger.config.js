@@ -1,8 +1,28 @@
 const winston = require('winston');
 require('winston-mongodb');
 const {LOG_DB_URI} = require('../config/server.config');
-
+const {Writable} = require('stream');
+const logToCosmosDB = require('../clientsapi/cosmosClient');
 const allowedTransport = [];
+
+// created a customStream to store log in microsoft azure cosmos 
+//db because winston directly not supporting to the azure thats why 
+//we converted logs into writable stream
+
+const createCustomStream = new Writable({
+    write(chunck, encoding, callback){
+        const message = chunck.toString()
+        console.log('log intercepted in logtransport', message);
+        logToCosmosDB("error", message);
+        callback();
+    }
+})
+
+const customStreamTransport = new winston.transports.Stream({
+    stream:createCustomStream
+})
+
+allowedTransport.push(customStreamTransport);
 
 allowedTransport.push(new winston.transports.Console({
     format:winston.format.combine(
