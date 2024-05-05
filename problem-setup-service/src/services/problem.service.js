@@ -9,7 +9,6 @@ class ProblemService  {
 
 
     async createProblem (problemData) {
-        console.log('problem service data =<', problemData);
         // need to senetize the description which is enter by the problem setter
         problemData.description = sanitizeMarkdownContent(problemData.description);
         const problem = await this.problemRepository.createProblem(problemData);
