@@ -2,11 +2,13 @@ const {StatusCodes} = require('http-status-codes');
 const NotImplemented = require('../errors/notimplemented.error');
 const {ProblemService} = require('../services');
 const {ProblemRepository} = require('../repositories');
+const logger = require('../config/logger.config');
 
 
 const problemService = new ProblemService(new ProblemRepository());
 
 function pingProblemController (req, res) {
+    logger.error('this is my first cosmos db log');
     res.json({message:'Ping controller in working'})
 }
 
